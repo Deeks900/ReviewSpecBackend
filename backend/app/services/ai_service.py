@@ -130,18 +130,56 @@ def enhance_with_gemini(api_key: str, text: str):
     model = genai.GenerativeModel("gemini-3.1-flash-lite-preview")
 
     prompt = f"""
-You are a senior software architect.
+You are a senior software architect and technical specification reviewer.
 
-Rewrite the following specification into ONE improved version.
+Your task is to IMPROVE the given specification while PRESERVING its structure and completeness.
 
-Rules:
-- Output ONLY the final improved spec
-- Do NOT explain anything
-- Do NOT give multiple options
-- Make it precise and measurable
-- Keep it concise (max 3-4 lines)
+========================
+STRICT RULES (IMPORTANT)
+========================
 
-Spec:
+1. Output ONLY the improved specification.
+   - No explanations
+   - No commentary
+   - No bullet points about your changes
+   - No reasoning
+
+2. DO NOT summarize the spec.
+   - Do NOT compress into a paragraph
+   - Do NOT reduce length artificially
+
+3. PRESERVE STRUCTURE:
+   - Keep all original sections
+   - Maintain headings (##, ###)
+   - Maintain API formats, JSON blocks, tables, and lists
+
+4. IMPROVE QUALITY:
+   - Convert vague statements into precise, testable requirements
+   - Add missing constraints where logically required
+   - Fix inconsistencies in terminology
+   - Clarify ambiguous behavior
+   - Improve API definitions if present
+
+5. ENHANCE COMPLETENESS:
+   - If missing, add (only if relevant):
+     - Authentication / Authorization
+     - Error Handling
+     - Edge Cases
+     - Data Model clarity
+     - Non-functional requirements
+
+6. DO NOT INVENT UNRELATED FEATURES:
+   - Do not add new product ideas
+   - Do not change system scope
+
+7. STYLE:
+   - Must remain a professional technical specification
+   - Must be structured, readable, and implementation-ready
+
+========================
+INPUT SPECIFICATION
+========================
+
 {text}
 """
 
@@ -165,18 +203,56 @@ def enhance_with_claude(api_key: str, text: str):
     client = anthropic.Anthropic(api_key=api_key)
 
     prompt = f"""
-You are a senior software architect.
+You are a senior software architect and technical specification reviewer.
 
-Rewrite the following specification into ONE improved version.
+Your task is to IMPROVE the given specification while PRESERVING its structure and completeness.
 
-Rules:
-- Output ONLY the final improved spec
-- Do NOT explain anything
-- Do NOT give multiple options
-- Make it precise and measurable
-- Keep it concise (max 3-4 lines)
+========================
+STRICT RULES (IMPORTANT)
+========================
 
-Spec:
+1. Output ONLY the improved specification.
+   - No explanations
+   - No commentary
+   - No bullet points about your changes
+   - No reasoning
+
+2. DO NOT summarize the spec.
+   - Do NOT compress into a paragraph
+   - Do NOT reduce length artificially
+
+3. PRESERVE STRUCTURE:
+   - Keep all original sections
+   - Maintain headings (##, ###)
+   - Maintain API formats, JSON blocks, tables, and lists
+
+4. IMPROVE QUALITY:
+   - Convert vague statements into precise, testable requirements
+   - Add missing constraints where logically required
+   - Fix inconsistencies in terminology
+   - Clarify ambiguous behavior
+   - Improve API definitions if present
+
+5. ENHANCE COMPLETENESS:
+   - If missing, add (only if relevant):
+     - Authentication / Authorization
+     - Error Handling
+     - Edge Cases
+     - Data Model clarity
+     - Non-functional requirements
+
+6. DO NOT INVENT UNRELATED FEATURES:
+   - Do not add new product ideas
+   - Do not change system scope
+
+7. STYLE:
+   - Must remain a professional technical specification
+   - Must be structured, readable, and implementation-ready
+
+========================
+INPUT SPECIFICATION
+========================
+
 {text}
 """
 
