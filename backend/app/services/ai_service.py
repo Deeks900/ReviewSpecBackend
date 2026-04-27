@@ -104,7 +104,7 @@ Spec:
         try:
             response = client.messages.create(
                 model="claude-sonnet-4-6",
-                max_tokens=800,
+                max_tokens=8000,
                 messages=[{"role": "user", "content": prompt}]
             )
 
@@ -260,7 +260,7 @@ INPUT SPECIFICATION
         try:
             response = client.messages.create(
                 model="claude-sonnet-4-6",
-                max_tokens=300,
+                max_tokens=8000,
                 messages=[{"role": "user", "content": prompt}]
             )
 
